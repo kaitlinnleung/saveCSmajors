@@ -20,7 +20,7 @@
 }
 
 .navbar a.icon {
-    background: black;
+    background: rgb(43, 43, 134);
     display: block;
     position: absolute;
     right: 0;
@@ -53,12 +53,12 @@ body {
 
 .fatbuttons > a {
     background-color:rgb(43, 43, 134);
-    border: 5px solid white;
+    border: 5px solid rgb(250, 250, 190);
     color: rgb(255, 221, 0);
     font-size: 20px;
-    padding: 5px;
     display: block;
     text-align: center;
+    padding: 5px;
     width:150px;
     border-radius: 25px;
     text-decoration: none;
@@ -77,16 +77,11 @@ section {
     text-align: center;
     margin-top: 200px;
     font-size: 40px;
+    color: rgb(43, 43, 134);
 }
 
 
 /*quiz.html*/
-
-h1 {
-    text-align: center;
-    font-size: 50px;
-    color: rgb(43, 43, 134);
-}
 
 h2 {
     text-align: center;
@@ -96,24 +91,44 @@ body > div {
     text-align: center;
 }
 
-/*specializations.html*/
-h1 {
-    text-align: center;
+form > div {
+    padding: 5px;
 }
+
+button {
+    text-align: center;
+    width: 30%;
+    height: 35px;
+    margin-left: 35%;
+    padding: 50px;
+    border-width: 25px;
+}
+
+/*specializations.html*/
+#specializations > p{
+    text-align: left;
+}
+#specializations > h2{
+    text-align: left;
+}
+
 
 /*resources.html*/
 body {
-    background-color: rgb(232, 232, 203);
+    background-color: rgb(250, 250, 190);
 }
+
 h1 {
     text-align: center;
-    color: grey;
+    font-size: 50px;
+    color: rgb(43, 43, 134);
 }
 
 li {
-    list-style-Type: none;
+    list-style-type: none;
     padding: 0 0 4px 23px;
     background: url(https://www.computerhope.com/cdn/arrow.png) no-repeat left center;
+    text-align: left;
    }
 a {
     text-decoration: none;

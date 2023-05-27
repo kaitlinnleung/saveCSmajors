@@ -1,9 +1,9 @@
 const PETERPORTAL_BASE_URL = "https://api.peterportal.org/rest/v0/";
 //dictionary for class info
 var info = {};
+//dictionary for class to specializations it fulfills
 //dictionary for class count
 var count = {};
-var validid = [ 1173, 1329, 3216, 3256, 3257, 3322]
 
 
 
@@ -24,36 +24,52 @@ function AddToCart() {
     for (var i = 0; i < shoppingCart.length; i++) {
         if (shoppingCart[i].checked) {
             if (shoppingCart[i] in count) {
-                shoppingCart[i]++;
+                count[i]++;
             } else {
-                shoppingCart[i] = 1;
+                count[i] = 1;
             }
         }
     }
+    console.log(shoppingCart);
 }
 
 function loadquiz() {
     fetch("https://api.peterportal.org/rest/v0/courses/all").then(res=>res.json()).then(response =>{
-        console.log(response)
-        for ( var i = 1173; i <= 1329; i++ )//cs
+        for ( var i = 1173; i <= 1329; i++ ) //cs
         {
-            info[ response[i][id] ] = [ response[i][departmemnt], response[i][number], response[i][title], response[i][description] ];
+            info[ String(response[i].id) ] = [ response[i].department, response[i].number, response[i].title, response[i].description ];
+            
         }
-        
-        for ( var i = 3216; i <= 3256; i++ )//ics
+        for ( var i = 3216; i <= 3256; i++ ) //ics
         {
-            info[ response[i][id] ] = [ response[i][departmemnt], response[i][number], response[i][title], response[i][description] ];
+            info[ String(response[i].id) ] = [ response[i].department, response[i].number, response[i].title, response[i].description ];
+
         }
 
         for ( var i = 3257; i <= 3322; i++ )//inf
         {
-            info[ response[i][id] ] = [ response[i][departmemnt], response[i][number], response[i][title], response[i][description] ];
+            info[ String(response[i].id) ] = [ response[i].department, response[i].number, response[i].title, response[i].description ];
         }
+        
+        var objkey = Object.keys( info );
+        const formelement = document.createElement( "form" );
+        for( [department, number, title] of Object.values(info) ) {
+            const div = document.createElement( "div" );
+            const checkbox = document.createElement( "input" );
+            checkbox.type = "checkbox";
+            const label = document.createElement( "label" );
+            label.appendChild( checkbox );
+            const labeltext = document.createElement( "span" );
+            label.appendChild( labeltext );
+            labeltext.innerText = department + " " + number + ": " + title;
+            div.appendChild( label );
+            formelement.append( div );
+        }
+        document.body.appendChild( formelement );
+
+        const submitbutton = document.createElement( "button" );
+        submitbutton.onclick = "return AddToCart();"
+        document.body.appendChild( submitbutton );
     })
-    
-    var objkey = Object.keys( info );
-    for(var i = 0; i < Object.keys( info ).length; i++) {
-        var obj = info[ objkey[ i ] ];
-        document.body.innerHTML += '<form><input type="checkbox" name="courses" id="obj[id]" value="cs121" onclick="return AddToCart();"><label for="course1">CS 121</label></form>'//call to dictionary
-     }
+
 }
