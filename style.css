@@ -27,9 +27,20 @@
     top: 0;
 }
 
-.navbar a:hover {
+.links {
+    background-color: rgb(43, 43, 134);
+    position: relative;
+    overflow: hidden;
+}
+
+.links a:hover {
     background-color: #ddd;
     color: black;
+}
+
+.navbar a.active {
+    color: white;
+    height:20px;
 }
 
 
@@ -84,11 +95,30 @@ h2 {
 body > div {
     text-align: center;
 }
-/*resources.html*/
+
+/*specializations.html*/
 h1 {
     text-align: center;
 }
 
+/*resources.html*/
+body {
+    background-color: rgb(232, 232, 203);
+}
+h1 {
+    text-align: center;
+    color: grey;
+}
+
+li {
+    list-style-Type: none;
+    padding: 0 0 4px 23px;
+    background: url(https://www.computerhope.com/cdn/arrow.png) no-repeat left center;
+   }
+a {
+    text-decoration: none;
+    color: orangered;
+}
 /*aboutus.html*/
 h1 {
     text-align: center;
