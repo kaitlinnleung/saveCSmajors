@@ -3,7 +3,9 @@ const PETERPORTAL_BASE_URL = "https://api.peterportal.org/rest/v0/";
 var info = {};
 //dictionary for class count
 var count = {};
-var valid = [ "I&C SCI", "COMPSCI", "IN4MATX" ]
+var validid = [ 1173, 1329, 3216, 3256, 3257, 3322]
+
+
 
 
 function dropdown() {
@@ -33,12 +35,22 @@ function AddToCart() {
 function loadquiz() {
     fetch("https://api.peterportal.org/rest/v0/courses/all").then(res=>res.json()).then(response =>{
         console.log(response)
-
-        if ( response.department in validclasses )
+        for ( var i = 1173; i <= 1329; i++ )//cs
         {
-            info[ response[id] ] = [ response[departmemnt], response[number], response[title], response[description] ];
+            info[ response[i][id] ] = [ response[i][departmemnt], response[i][number], response[i][title], response[i][description] ];
+        }
+        
+        for ( var i = 3216; i <= 3256; i++ )//ics
+        {
+            info[ response[i][id] ] = [ response[i][departmemnt], response[i][number], response[i][title], response[i][description] ];
+        }
+
+        for ( var i = 3257; i <= 3322; i++ )//inf
+        {
+            info[ response[i][id] ] = [ response[i][departmemnt], response[i][number], response[i][title], response[i][description] ];
         }
     })
+    
     var objkey = Object.keys( info );
     for(var i = 0; i < Object.keys( info ).length; i++) {
         var obj = info[ objkey[ i ] ];
