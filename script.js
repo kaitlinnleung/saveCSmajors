@@ -172,12 +172,14 @@ function checkout() {
         </div>
 
         <h1>Specialization Results: </h1>
-
     `
     for ( var i = 0; i < spec_list.length; i++ )
     {
         document.body.innerHTML += `<h2>` + spec_list[i] + `</h2>`
     }
+    document.body.innerHTML += `
+        <h3>For a description of your recommended specialization, checkout <a id="jsh3" href="specializations.html">our specializations page</a></h3>
+    `
 }
 
 function loadquiz() {
@@ -201,6 +203,7 @@ function loadquiz() {
             const div = document.createElement( "div" );
             const checkbox = document.createElement( "input" );
             checkbox.type = "checkbox";
+            checkbox.className = "checkList";
             checkbox.setAttribute("id", id);     
             
             
