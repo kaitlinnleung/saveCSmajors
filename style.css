@@ -228,6 +228,60 @@ from {opacity: 0;}
 to {opacity:1 ;}
 }
 
+.box {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quizPar {
+    font-size: 17px;
+    align-items: center;
+}
+
+.box a {
+    display: inline-block;
+    background-color: #fff;
+    border-radius: 3px;
+}
+
+.modal {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: all 0.4s;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.content {
+    position: absolute;
+    background: white;
+    width: 400px;
+    padding: 1em 2em;
+    border-radius: 4px;
+}
+
+.modal:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.box-close {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    color: #fe0606;
+    text-decoration: none;
+    font-size: 30px;
+}
+
 
 /*specializations.html*/
 #specializations > p{
@@ -295,14 +349,35 @@ span {
     font-weight: 'Regular 400';
 }
 
-.info {
+.hackerdiv {
+    width: 90%;
     margin: auto;
-    width: 60%;
     display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-rows: 300px 300px;
+    gap: 80px;
+    grid-row-gap: 80px;
+    position: relative;
 }
 
 .hackerphoto {
-    width: 200px;
-    height: 200px;
+    width: 225px;
+    height: 225px;
     float: left;
+    margin: 7px;
+}
+
+.topleft {
+    grid-column: span 1;
+}
+
+.divinfo {
+    width: 100%;
+}
+
+.blurb {
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-weight: 'Light 300';
+    font-size: 15px;
 }
