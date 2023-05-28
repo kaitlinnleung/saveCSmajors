@@ -158,10 +158,10 @@ function checkout() {
     document.body.innerHTML = `
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <div class="navbar">
-            <img class="active" id="dbhimage" src="UCI17_Bren_ICS_2L_white-1200.png" alt ="UCI Donald Bren School of Information & Computer Sciences"/>
+            <a class="active"></a>
             <div id="myLinks" class="links">
                 <a href="index.html">Home</a>
-                <a href="quiz.html">Quiz</a>
+                <a href="quiz.html">Matcher</a>
                 <a href="specializations.html">Specializations</a>
                 <a href="resources.html">Resources</a>
                 <a href="aboutus.html">About Us</a>
@@ -364,7 +364,7 @@ function loadquiz() {
 
         const buttonsect = document.createElement( "section" );
         const submitbutton = document.createElement( "button" );
-        submitbutton.innerText = "Checkout"
+        submitbutton.innerText = "Submit"
         submitbutton.onclick = () => {
             checkout();
         }
