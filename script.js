@@ -1,6 +1,8 @@
 const PETERPORTAL_BASE_URL = "https://api.peterportal.org/rest/v0/";
+
 //dictionary for class info
 var info = {};
+
 //dictionary for class to specializations it fulfills
 var specializations = {
     "COMPSCI111": ["Visual Computing"], 
@@ -51,6 +53,7 @@ var specializations = {
     "I&CSCI45J": ["Visual Computing"],
     "I&CSCI162": ["Visual Computing"] 
 };
+
 //dictionary for class count
 var count = {
     "Algorithms": 0,
@@ -68,10 +71,12 @@ var count = {
     "General CS": 0
 };
 
+// list for final specialization result
 var spec_list = [];
 
 
 function dropdown() {
+    // function to dropdown menu for different page links
     var x = document.getElementById("myLinks");
 
     if (x.style.display === "block") {
@@ -81,81 +86,39 @@ function dropdown() {
     }
 }
 
-/*
-function checkout() {
-    var shoppingCart = document.getElementsByName("courses").value;
-    
-    for (var i = 0; i < shoppingCart.length; i++) {
-        if (shoppingCart[i].checked) {
-
-        }
-    }
-    console.log(shoppingCart);
-}
-*/
-/*
-function collapsible() {
-    var coll = document.getElementsByClassName("collapsible");
-    var i;
-
-    for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-        content.style.display = "none";
-        } else {
-        content.style.display = "block";
-        }
-    });
-    }
-}
-*/
 
 function popupFunc() {
+    // function to toggle course description popup
     var popup = document.getElementById(pid);
     popup.classList.toggle("show");
 }
 
 function increment( cid ) {
+    // function to increment specialiation counter if checkbox is checked
     if (cid in specializations) {
         var specs = specializations[cid];
         if (document.getElementById(cid).checked) {
-            console.log(cid)
-            // if specs is not found then gen cs
             for (spec in specs){
                 count[ specs[spec] ]++;
             }
         } 
     }
     else {
-        count[ "General CS" ]++;
+        if (document.getElementById(cid).checked) {
+            count[ "General CS" ]++;
+        } 
     }
 }
     
-    /*
-    for ( var i = 0; i < spec.length; ++i )
-    {
-        if ( checker.checked = true )
-        {
-            count[ spec[i] ]++;
-        
-        }
-        else
-        {
-            count[ spec[i] ]--;
-        }
-        console.log( count[ spec[i] ] );
-    }*/
 
 
 function checkout() {
-    //console.log("checkout working");
+    // function to update counters, determine potential specializations, then change page to result page
     for ( val of Object.values( info ) )
     {
         increment( val[0] );
     }
-    console.log(count);
+
     if ( count["Algorithms"] >= 4 ) {
         spec_list.push( "Algorithms" );
 
@@ -218,11 +181,10 @@ function checkout() {
 }
 
 function loadquiz() {
+    // function to load quiz html with checkboxes and valid courses
     fetch("https://api.peterportal.org/rest/v0/courses/all").then(res=>res.json()).then(response =>{
-        //1225
-        // cs 161 = 1206
-        // ics 45j = 3240
-        for ( var i = 1173; i <= 1225; i++ ) //cs
+
+        for ( var i = 1173; i <= 1225; i++ )
         {
             if (i != 1206) {
                 info[ String(response[i].id) ] = [ response[i].id, response[i].department, response[i].number, response[i].title, response[i].description ];
@@ -230,7 +192,8 @@ function loadquiz() {
         }
         info[ String(response[3220].id) ] = [ response[3220].id, response[3220].department, response[3220].number, response[3220].title, response[3220].description ];
         info[ String(response[3240].id) ] = [ response[3240].id, response[3240].department, response[3240].number, response[3240].title, response[3220].description ];
-        //var objkey = Object.keys( info );
+        const outerdiv = document.createElement( "div" );
+        outerdiv.setAttribute( "id", "outerdiv" );
         const formelement = document.createElement( "form" );
         var pidcount = 1
 
@@ -242,24 +205,19 @@ function loadquiz() {
             
             
             checkbox.onclick = () => {
-                //console.log(id);
-                //console.log(specializations[id]);
                 checkbox.classList.toggle( console.log( "checkbox click" ) );
-                //count[ class_specializations ]++;
             }
             
             div.appendChild( checkbox );
 
             const label = document.createElement( "label" );
             const labeltext = document.createElement( "span" );
-            // labeltext.class = "popup";
             
             const popupcontainer = document.createElement( "div" );
             popupcontainer.className = "popup";
             labeltext.innerText = department + " " + number + ": " + title;
             const paragraph = document.createElement("p");
-            paragraph.className = "popuptext";
-            // paragraph.id = "myPopup" + pidcount.toString();
+            paragraph.className = "popdesc";
             paragraph.innerText = description;
             popupcontainer.appendChild( paragraph );
             label.appendChild( labeltext );
@@ -269,16 +227,16 @@ function loadquiz() {
                 paragraph.classList.toggle("show");
 
             }
-            // "myFunction(myPopup" + pidcount.toString() + ")";
-
-
-            /*label.appendChild( paragraph);*/
+            
             div.appendChild( label );
             formelement.append( div );
             pidcount++;
         }
+        outerdiv.appendChild( formelement );
+        document.body.appendChild( outerdiv );
 
-        document.body.appendChild( formelement );
+        const spacer = document.createElement( "br" );
+        document.body.appendChild( spacer );
 
         const buttonsect = document.createElement( "section" );
         const submitbutton = document.createElement( "button" );
