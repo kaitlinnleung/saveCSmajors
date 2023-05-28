@@ -223,7 +223,7 @@ h1 {
   /* The actual popup */
   .popup .popuptext {
     visibility: hidden;
-    width: 500px;
+    width: 450px;
     background-color: #555;
     color: #fff;
     text-align: center;
@@ -232,8 +232,9 @@ h1 {
     position: absolute;
     z-index: 1;
     bottom: 125%;
-    left: 50%;
     margin-left: -80px;
+    left: 25%;
+    right: 100%;
   }
   
   /* Popup arrow */

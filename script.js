@@ -3,39 +3,39 @@ const PETERPORTAL_BASE_URL = "https://api.peterportal.org/rest/v0/";
 var info = {};
 //dictionary for class to specializations it fulfills
 var specializations = {
-    "COMPSCI111": ["Visual Computing"],  // 1174
-    "CS112": ["Visual Computing"],  // 1175
-    "CS114": ["Visual Computing"],  // 1177
-    "CS116": ["Visual Computing", "Intellient Systems"],    // 1179
-    "CS117": ["Visual Computing"],  // 
-    "CS121": ["Information", "Intelligent Systems"],    // 
-    "CS122": ["Information"],   // 
-    "CS122B": ["Information"],  // 
-    "CS125": ["Information", "Intelligent Systems"],
-    "CS131": ["Systems and Software"],
-    "CS132": ["Information", "Networked Systems"],
-    "CS133": ["Networked Systems"],
-    "CS134": ["Information", "Networked Systems"],
-    "CS141": ["Information", "Systems and Software"],
-    "CS142A": ["Information", "Systems and Software"],
-    "CS143A": ["Information", "Networked Systems", "Systems and Software"],
-    "CS143B": ["Systems and Software"],
-    "CS143A": ["Architecture & Embedded Systems"],
-    "CS143B": ["Architecture & Embedded Systems"],
-    "CS151": ["Architecture & Embedded Systems"],
-    "CS152": ["Architecture & Embedded Systems"],
-    "CS154": ["Architecture & Embedded Systems"],
-    "CS162": ["Algorithms", "Intelligent Systems"],
-    "CS163": ["Algorithms", "Information", "Intelligent Systems"],
-    "CS167": ["Algorithms", "Information"],
-    "CS169": ["Algorithms", "Intelligent Systems"],
-    "CS171": ["Intelligent Systems"],
-    "CS175": ["Intelligent Systems"],
-    "CS177": ["Intelligent Systems"],
-    "CS178": ["Information", "Intelligent Systems"],
-    "CS184A": ["Bioinformatics"],
-    "CS184C": ["Bioinformatcs"],
-    "ICS162": ["Visual Computing"]  // 3220
+    "COMPSCI111": ["Visual Computing"], 
+    "COMPSCI112": ["Visual Computing"], 
+    "COMPSCI114": ["Visual Computing"], 
+    "COMPSCI116": ["Visual Computing", "Intellient Systems"],   
+    "COMPSCI117": ["Visual Computing"], 
+    "COMPSCI121": ["Information", "Intelligent Systems"],  
+    "COMPSCI122": ["Information"],  
+    "COMPSCI122B": ["Information"], 
+    "COMPSCI125": ["Information", "Intelligent Systems"],
+    "COMPSCI131": ["Systems and Software"],
+    "COMPSCI132": ["Information", "Networked Systems"],
+    "COMPSCI133": ["Networked Systems"],
+    "COMPSCI134": ["Information", "Networked Systems"],
+    "COMPSCI141": ["Information", "Systems and Software"],
+    "COMPSCI142A": ["Information", "Systems and Software"],
+    "COMPSCI143A": ["Information", "Networked Systems", "Systems and Software"],
+    "COMPSCI143B": ["Systems and Software"],
+    "COMPSCI143A": ["Architecture & Embedded Systems"],
+    "COMPSCI143B": ["Architecture & Embedded Systems"],
+    "COMPSCI151": ["Architecture & Embedded Systems"],
+    "COMPSCI152": ["Architecture & Embedded Systems"],
+    "COMPSCI154": ["Architecture & Embedded Systems"],
+    "COMPSCI162": ["Algorithms", "Intelligent Systems"],
+    "COMPSCI163": ["Algorithms", "Information", "Intelligent Systems"],
+    "COMPSCI167": ["Algorithms", "Information"],
+    "COMPSCI169": ["Algorithms", "Intelligent Systems"],
+    "COMPSCI171": ["Intelligent Systems"],
+    "COMPSCI175": ["Intelligent Systems"],
+    "COMPSCI177": ["Intelligent Systems"],
+    "COMPSCI178": ["Information", "Intelligent Systems"],
+    "COMPSCI184A": ["Bioinformatics"],
+    "COMPSCI184C": ["Bioinformatcs"],
+    "I&CSCI162": ["Visual Computing"] 
 };
 //dictionary for class count
 var count = {
@@ -99,25 +99,65 @@ function popupFunc() {
     popup.classList.toggle("show");
 }
 
+function crement( cid ) {
+    console.log( cid );
+    var specs = specializations[cid]
+    var checker = document.getElementsByTagName("input");
+    for (spec in specs){
+        if ( checker.checked = true )
+        {
+            count[ specs[spec] ]++;
+        
+        }
+        else
+        {
+            count[ specs[spec] ]--;
+        }
+        console.log(specializations[cid][spec]);
+        console.log(count[specs[spec]]);
+    }
+    
+    /*
+    for ( var i = 0; i < spec.length; ++i )
+    {
+        if ( checker.checked = true )
+        {
+            count[ spec[i] ]++;
+        
+        }
+        else
+        {
+            count[ spec[i] ]--;
+        }
+        console.log( count[ spec[i] ] );
+    }*/
+}
+
 function loadquiz() {
     fetch("https://api.peterportal.org/rest/v0/courses/all").then(res=>res.json()).then(response =>{
         for ( var i = 1173; i <= 1329; i++ ) //cs
         {
-            if (String(response[i].id) in Object.keys(specializations)) {
-                console.log(i);
-                console.log(response[i].id);
+            if (response[i].id in specializations) {
+                info[ String(response[i].id) ] = [ response[i].id, response[i].department, response[i].number, response[i].title, response[i].description ];
             }
-            //console.log(response[i].id);
-            info[ String(response[i].id) ] = [ response[i].department, response[i].number, response[i].title, response[i].description ];
         }
-        info[ String(response[3220].id) ] = [ response[3220].department, response[3220].number, response[3220].title, response[3220].description ];
+        info[ String(response[3220].id) ] = [ response[3220].id, response[3220].department, response[3220].number, response[3220].title, response[3220].description ];
         var objkey = Object.keys( info );
         const formelement = document.createElement( "form" );
         var pidcount = 1
-        for( [department, number, title, description] of Object.values(info) ) {
+        for( [id, department, number, title, description] of Object.values(info) ) {
             const div = document.createElement( "div" );
             const checkbox = document.createElement( "input" );
             checkbox.type = "checkbox";
+            checkbox.setAttribute("id", id);
+            
+
+            checkbox.onclick = () => {
+                //console.log(id);
+                //console.log(specializations[id]);
+                checkbox.classList.toggle( crement( id ) );
+                //count[ class_specializations ]++;
+            }
             div.appendChild( checkbox );
 
             const label = document.createElement( "label" );
@@ -126,7 +166,6 @@ function loadquiz() {
             
             const popupcontainer = document.createElement( "div" );
             popupcontainer.className = "popup";
-
             labeltext.innerText = department + " " + number + ": " + title;
             const paragraph = document.createElement("p");
             paragraph.className = "popuptext";
