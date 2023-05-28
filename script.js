@@ -178,8 +178,10 @@ function checkout() {
         document.body.innerHTML += `<h2>` + spec_list[i] + `</h2>`
     }
     document.body.innerHTML += `
-        <h3>For a description of your recommended specialization, checkout <a id="jsh3" href="specializations.html">our specializations page</a></h3>
+        <h3>For a description of your recommended specialization, checkout <a id="jsh3" href="specializations.html">our specializations page</a>!</h3>
+        
     `
+
 }
 
 function loadquiz() {
@@ -250,5 +252,21 @@ function loadquiz() {
         buttonsect.appendChild( submitbutton )
         document.body.appendChild( buttonsect );
     })
+
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight){
+            content.style.maxHeight = null;
+            } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+
 
 }
