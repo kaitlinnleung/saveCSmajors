@@ -11,7 +11,7 @@
 <body>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div class="navbar">
-        <a class="active"></a>
+        <img class="active" id="dbhimage" src="UCI17_Bren_ICS_2L_white-1200.png" alt ="UCI Donald Bren School of Information & Computer Sciences"/>
         <div id="myLinks" class="links">
             <a href="index.html">Home</a>
             <a href="quiz.html">Quiz</a>
@@ -28,10 +28,30 @@
     <section>
         <div class="fatbuttons">
             <a href="quiz.html" onclick="loadquiz()">Quiz</a>
+            <a href="specializations.html">Specializations</a>
             <a href="resources.html">Resources</a>
             <a href="aboutus.html">About Us</a>
         </div>
     </section>
-
+    <br></br>
+    <form>
+        <div>
+            <input type="checkbox"></input>
+            <label>
+                <span class="popup" onclick="myFunction()">CS 171
+                    <p class="popuptext" id="myPopup">intro to ai</p>
+                </span>
+            </label>
+        </div>
+        <br></br>
+        <div>
+            <input type="checkbox"></input>
+            <label>
+                <span class="popup" onclick="myFunction2()">CS 178
+                    <p class="popuptext" id="myPopup2">intro to ml</p>
+                </span>
+            </label>
+        </div>
+    </form>
 </body>
 </html>
