@@ -60,6 +60,10 @@ img.active {
     background-color: rgb(27, 61, 109);
 }
 
+.bottompaddingh1 {
+    margin-bottom: 15px;
+}
+
 #dbhimage {
     background-color: rgb(27, 61, 109);
     width: 50%;
@@ -78,7 +82,7 @@ img.active {
 	grid-template-rows: 120px 120px;
     grid-column-gap: 60px;
     grid-row-gap: 0px;
-    margin-bottom: 25p
+    margin-bottom: 10px;
 }
 
 .fatbuttons > a {
@@ -96,6 +100,8 @@ img.active {
     transition-duration: 0.5s;
     font-family: 'Lato', sans-serif;
     font-weight: 'Regular 400';
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .fatbuttons > a:hover {
@@ -127,7 +133,7 @@ section {
 
 h2 {
     text-align: center;
-    font-size: 30px;
+    font-size: 40px;
     font-family: 'Lato', sans-serif;
     font-weight: 'Regular 400';
 }
@@ -326,8 +332,8 @@ section > button {
     left: 0;
     right: 0;
     display: flex;
-    width: 600px;
-    height: 600px;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
 }
 
@@ -468,14 +474,13 @@ background-image: linear-gradient(
 }
 
 .confetti i {
-    width: 3rem;
-    height: 3rem;
+    width: 100%;
+    height: 100%;
     margin: 0 0.2rem;
     animation-name: confetti;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
-    /*animation-duration: calc(70s / var(--speed));*/
-    animation-duration: 10s;
+    animation-duration: calc(70s / var(--speed));
 }
 
 .confetti i:nth-child(even) {
@@ -491,7 +496,6 @@ background-image: linear-gradient(
         transform: translateY(100vh);
     }
 }
-  
 
 
 /*specializations.html*/
@@ -504,7 +508,7 @@ background-image: linear-gradient(
     text-align: left;
     font-family: 'Lato', sans-serif;
     font-weight: 'Regular 400';
-    font-size: 30px;
+    font-size: 40px;
 }
 
 
@@ -550,10 +554,16 @@ a {
 
 .resourceh2 {
     margin: 30px 0px 10px 0px;
-    color: rgb(27, 61, 109);
-    font-size: 30px;
+    font-size: 40px;
 }
 
+.happylemon {
+    margin: auto;
+    height: 300px;
+    width: 400px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
 
 /*aboutus.html*/
 
@@ -609,4 +619,19 @@ span {
 
 .info div {
     margin: 3px 3px 0px 3px;
+}
+
+hr {
+    height:2px;
+    border-width:0;
+    color:rgba(47, 75, 114, 0.636);
+    background-color:rgba(61, 82, 112, 0.636);
+}
+
+.specRes {
+    font-family: 'Lato', sans-serif;
+    font-weight: 'Regular 400';
+    font-size: 40px;
+    margin: 3px;
+    
 }

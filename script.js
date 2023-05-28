@@ -170,17 +170,23 @@ function checkout() {
                 <i class="fa fa-bars"></i>
             </a>
         </div>
-
+        <div class="confetti-container">
         <h1>Specialization Results: </h1>
     `
     for ( var i = 0; i < spec_list.length; i++ )
     {
-        document.body.innerHTML += `<h2>` + spec_list[i] + `</h2>`
+        document.body.innerHTML += `<h2 class="specRes">` + spec_list[i] + `</h2>`
     }
+
     document.body.innerHTML += `
-        <h3>For a description of your recommended specialization, checkout <a id="jsh3" href="specializations.html">our specializations page</a>!</h3>
-        
-        <div class="confetti-container">
+        <img class="happylemon" src="IMG_2195.PNG" alt="Happy lemon on wheels uci hat" />
+    `
+    document.body.innerHTML += `
+        <h3>For a description of your recommended specialization(s), checkout <a id="jsh3" href="specializations.html">our specializations page</a>!</h3>
+    `
+
+    var tempHTML = document.body.innerHTML
+    document.body.innerHTML += `        
             <div class="confetti">
                 <i style="--speed: 10; --bg: yellow" class="square"></i>
                 <i style="--speed: 18; --bg: white" class="pentagram"></i>
@@ -291,6 +297,9 @@ function checkout() {
             </div>
         </div>
     `
+    setTimeout(function () {
+        document.body.innerHTML = tempHTML;
+    }, 5000);
 
 }
 
